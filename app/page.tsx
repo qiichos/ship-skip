@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -7,8 +8,12 @@ import {
   ArrowRight,
   Brain,
   CheckCircle2,
+  CircleHelp,
   Clock,
+  Code,
   Eye,
+  FileSearch,
+  FileText,
   Gauge,
   GitBranch,
   Layers,
@@ -130,32 +135,40 @@ export default function Home() {
             already made your product worse.
           </p>
 
-          {/* Timeline visual */}
-          <div className="mx-auto flex max-w-lg items-center justify-between">
-            <div className="flex flex-col items-center gap-2">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-950/20">
-                <Zap className="h-6 w-6 text-emerald-400" />
-              </div>
-              <span className="text-xs font-medium text-emerald-400">
-                Build
-              </span>
-              <span className="text-[10px] text-zinc-600">Hours</span>
+          {/* Pipeline visual */}
+          <div className="mx-auto max-w-3xl">
+            <div className="flex items-center justify-between">
+              {[
+                { icon: FileSearch, label: "Discovery", sub: "Days", color: "text-emerald-400", border: "border-emerald-500/30", bg: "bg-emerald-950/20" },
+                { icon: FileText, label: "Spec", sub: "Days", color: "text-emerald-400", border: "border-emerald-500/30", bg: "bg-emerald-950/20" },
+                { icon: Code, label: "Build", sub: "Hours", color: "text-emerald-400", border: "border-emerald-500/30", bg: "bg-emerald-950/20" },
+                { icon: Clock, label: "Wait", sub: "Weeks", color: "text-amber-400", border: "border-amber-500/30", bg: "bg-amber-950/20" },
+                { icon: CircleHelp, label: "Success?", sub: "Months", color: "text-red-400", border: "border-red-500/30", bg: "bg-red-950/20" },
+              ].map((step, i, arr) => (
+                <div key={step.label} className="flex items-center">
+                  <div className="flex flex-col items-center gap-1.5">
+                    <div className={`flex h-12 w-12 items-center justify-center rounded-xl border ${step.border} ${step.bg}`}>
+                      <step.icon className={`h-5 w-5 ${step.color}`} />
+                    </div>
+                    <span className={`text-[11px] font-medium ${step.color}`}>{step.label}</span>
+                    <span className="text-[10px] text-zinc-600">{step.sub}</span>
+                  </div>
+                  {i < arr.length - 1 && (
+                    <div className={`mx-2 mb-6 h-px w-6 sm:w-10 ${i < 2 ? "bg-emerald-800/60" : i === 2 ? "bg-gradient-to-r from-emerald-800/60 to-amber-800/60" : "bg-gradient-to-r from-amber-800/60 to-red-800/60"}`} />
+                  )}
+                </div>
+              ))}
             </div>
-            <div className="mb-6 h-px flex-1 bg-gradient-to-r from-emerald-800 via-zinc-700 to-red-800" />
-            <div className="flex flex-col items-center gap-2">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-amber-500/30 bg-amber-950/20">
-                <Clock className="h-6 w-6 text-amber-400" />
+            {/* Fast / Slow labels */}
+            <div className="mt-4 flex justify-between">
+              <div className="flex items-center gap-1.5 rounded-full border border-emerald-500/15 bg-emerald-950/10 px-3 py-1">
+                <Zap className="h-3 w-3 text-emerald-400" />
+                <span className="text-[10px] font-medium text-emerald-400">Fast with AI</span>
               </div>
-              <span className="text-xs font-medium text-amber-400">Wait</span>
-              <span className="text-[10px] text-zinc-600">Weeks</span>
-            </div>
-            <div className="mb-6 h-px flex-1 bg-gradient-to-r from-amber-800 via-zinc-700 to-red-800" />
-            <div className="flex flex-col items-center gap-2">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-red-500/30 bg-red-950/20">
-                <TrendingDown className="h-6 w-6 text-red-400" />
+              <div className="flex items-center gap-1.5 rounded-full border border-red-500/15 bg-red-950/10 px-3 py-1">
+                <Clock className="h-3 w-3 text-red-400" />
+                <span className="text-[10px] font-medium text-red-400">Still slow &amp; risky</span>
               </div>
-              <span className="text-xs font-medium text-red-400">Damage</span>
-              <span className="text-[10px] text-zinc-600">Months</span>
             </div>
           </div>
         </div>
@@ -354,7 +367,39 @@ export default function Home() {
             ))}
           </div>
 
-          <p className="mx-auto mt-12 max-w-md text-base font-medium text-zinc-400">
+          {/* Integration logos */}
+          <div className="mx-auto mt-16 max-w-2xl">
+            <p className="mb-6 text-xs font-medium tracking-wider text-zinc-600 uppercase">
+              Connects with your existing data
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-6">
+              {[
+                { src: "/connection-logos/ga4.webp", alt: "Google Analytics 4", w: 40, h: 40 },
+                { src: "/connection-logos/clarity.png", alt: "Microsoft Clarity", w: 40, h: 40 },
+                { src: "/connection-logos/posthog.webp", alt: "PostHog", w: 40, h: 40 },
+                { src: "/connection-logos/amplitude.png", alt: "Amplitude", w: 40, h: 40 },
+                { src: "/connection-logos/statsig.png", alt: "Statsig", w: 40, h: 40 },
+              ].map((logo) => (
+                <div
+                  key={logo.alt}
+                  className="group flex h-16 w-16 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900/50 p-2 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700 hover:bg-zinc-800/80"
+                >
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={logo.w}
+                    height={logo.h}
+                    className="opacity-60 transition-opacity duration-300 group-hover:opacity-100"
+                  />
+                </div>
+              ))}
+            </div>
+            <p className="mt-4 text-xs text-zinc-600">
+              Google Analytics 4 &middot; Microsoft Clarity &middot; PostHog &middot; Amplitude &middot; Statsig &middot; and more
+            </p>
+          </div>
+
+          <p className="mx-auto mt-10 max-w-md text-base font-medium text-zinc-400">
             Not generic AI opinions.{" "}
             <span className="text-indigo-400">Your users&apos; instincts.</span>
           </p>
