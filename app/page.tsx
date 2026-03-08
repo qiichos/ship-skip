@@ -90,11 +90,9 @@ export default function Home() {
         <SectionLabel>Feature QA for the AI Era</SectionLabel>
 
         <h1 className="mx-auto max-w-4xl text-5xl font-extrabold leading-[1.1] tracking-tighter text-zinc-50 sm:text-6xl lg:text-7xl">
-          Win by shipping less.
+          Win by shipping <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">less</span>.
           <br />
-          <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
-            Not more.
-          </span>
+          Not more, with <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">AI users</span>.
         </h1>
 
         <p className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-zinc-400">
@@ -136,39 +134,77 @@ export default function Home() {
           </p>
 
           {/* Pipeline visual */}
-          <div className="mx-auto max-w-3xl">
-            <div className="flex items-center justify-between">
-              {[
-                { icon: FileSearch, label: "Discovery", sub: "Days", color: "text-emerald-400", border: "border-emerald-500/30", bg: "bg-emerald-950/20" },
-                { icon: FileText, label: "Spec", sub: "Days", color: "text-emerald-400", border: "border-emerald-500/30", bg: "bg-emerald-950/20" },
-                { icon: Code, label: "Build", sub: "Hours", color: "text-emerald-400", border: "border-emerald-500/30", bg: "bg-emerald-950/20" },
-                { icon: Clock, label: "Wait", sub: "Weeks", color: "text-amber-400", border: "border-amber-500/30", bg: "bg-amber-950/20" },
-                { icon: CircleHelp, label: "Success?", sub: "Months", color: "text-red-400", border: "border-red-500/30", bg: "bg-red-950/20" },
-              ].map((step, i, arr) => (
-                <div key={step.label} className="flex items-center">
-                  <div className="flex flex-col items-center gap-1.5">
-                    <div className={`flex h-12 w-12 items-center justify-center rounded-xl border ${step.border} ${step.bg}`}>
-                      <step.icon className={`h-5 w-5 ${step.color}`} />
-                    </div>
-                    <span className={`text-[11px] font-medium ${step.color}`}>{step.label}</span>
-                    <span className="text-[10px] text-zinc-600">{step.sub}</span>
+          <div className="mx-auto mt-16 max-w-5xl">
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-stretch lg:justify-center">
+              {/* Fast with AI Section */}
+              <div className="group relative flex-[3] rounded-3xl border border-emerald-500/20 bg-emerald-950/10 p-6 shadow-xl shadow-emerald-900/10 backdrop-blur-sm transition-all hover:border-emerald-500/30 sm:p-8 pt-10 sm:pt-10">
+                <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                {/* Badge */}
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 sm:left-8 sm:translate-x-0">
+                  <div className="flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-950 px-4 py-1.5 shadow-sm">
+                    <Zap className="h-3.5 w-3.5 text-emerald-400" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400">Fast with AI</span>
                   </div>
-                  {i < arr.length - 1 && (
-                    <div className={`mx-2 mb-6 h-px w-6 sm:w-10 ${i < 2 ? "bg-emerald-800/60" : i === 2 ? "bg-gradient-to-r from-emerald-800/60 to-amber-800/60" : "bg-gradient-to-r from-amber-800/60 to-red-800/60"}`} />
-                  )}
                 </div>
-              ))}
-            </div>
-            {/* Fast / Slow labels */}
-            <div className="mt-4 flex justify-between">
-              <div className="flex items-center gap-1.5 rounded-full border border-emerald-500/15 bg-emerald-950/10 px-3 py-1">
-                <Zap className="h-3 w-3 text-emerald-400" />
-                <span className="text-[10px] font-medium text-emerald-400">Fast with AI</span>
+
+                <div className="relative z-10 flex justify-between">
+                  {/* Connecting Line (Desktop) */}
+                  <div className="absolute left-[10%] right-[10%] top-6 hidden h-[2px] bg-emerald-800/50 sm:block" />
+                  
+                  {[
+                    { icon: FileSearch, label: "Discovery", sub: "Days", color: "text-emerald-400", border: "border-emerald-500/30", bg: "bg-emerald-950/40" },
+                    { icon: FileText, label: "Spec", sub: "Days", color: "text-emerald-400", border: "border-emerald-500/30", bg: "bg-emerald-950/40" },
+                    { icon: Code, label: "Build", sub: "Hours", color: "text-emerald-400", border: "border-emerald-500/30", bg: "bg-emerald-950/40" },
+                  ].map((step) => (
+                    <div key={step.label} className="relative z-10 flex flex-col items-center gap-3 transition-transform duration-300 hover:-translate-y-1">
+                       <div className={`flex h-12 w-12 items-center justify-center rounded-xl border ${step.border} ${step.bg} shadow-inner`}>
+                          <step.icon className={`h-5 w-5 ${step.color}`} />
+                       </div>
+                       <div className="text-center">
+                         <div className={`text-xs font-semibold ${step.color}`}>{step.label}</div>
+                         <div className="mt-0.5 text-[10px] text-zinc-500">{step.sub}</div>
+                       </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="flex items-center gap-1.5 rounded-full border border-red-500/15 bg-red-950/10 px-3 py-1">
-                <Clock className="h-3 w-3 text-red-400" />
-                <span className="text-[10px] font-medium text-red-400">Still slow &amp; risky</span>
+
+              {/* Connector between sections */}
+              <div className="hidden h-[2px] w-8 self-center bg-zinc-800/80 lg:block" />
+              <div className="mx-auto h-8 w-[2px] bg-zinc-800/80 lg:hidden" />
+
+              {/* Slow & Risky Section */}
+              <div className="group relative flex-[2] rounded-3xl border border-red-500/20 bg-red-950/10 p-6 shadow-xl shadow-red-900/10 backdrop-blur-sm transition-all hover:border-red-500/30 sm:p-8 pt-10 sm:pt-10">
+                <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-red-500/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                {/* Badge */}
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 sm:left-8 sm:translate-x-0">
+                  <div className="flex items-center gap-1.5 rounded-full border border-red-500/30 bg-red-950 px-4 py-1.5 shadow-sm">
+                    <Clock className="h-3.5 w-3.5 text-red-400" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-red-400">Still slow &amp; risky</span>
+                  </div>
+                </div>
+
+                <div className="relative z-10 flex justify-around">
+                  {/* Connecting Line (Desktop) */}
+                  <div className="absolute left-[20%] right-[20%] top-6 hidden h-[2px] bg-gradient-to-r from-amber-800/50 to-red-800/50 sm:block" />
+                  
+                  {[
+                    { icon: Clock, label: "Wait", sub: "Weeks", color: "text-amber-400", border: "border-amber-500/30", bg: "bg-amber-950/40" },
+                    { icon: CircleHelp, label: "Success?", sub: "Months", color: "text-red-400", border: "border-red-500/30", bg: "bg-red-950/40" },
+                  ].map((step) => (
+                    <div key={step.label} className="relative z-10 flex flex-col items-center gap-3 transition-transform duration-300 hover:-translate-y-1">
+                       <div className={`flex h-12 w-12 items-center justify-center rounded-xl border ${step.border} ${step.bg} shadow-inner`}>
+                          <step.icon className={`h-5 w-5 ${step.color}`} />
+                       </div>
+                       <div className="text-center">
+                         <div className={`text-xs font-semibold ${step.color}`}>{step.label}</div>
+                         <div className="mt-0.5 text-[10px] text-zinc-500">{step.sub}</div>
+                       </div>
+                    </div>
+                  ))}
+                </div>
               </div>
+
             </div>
           </div>
         </div>
