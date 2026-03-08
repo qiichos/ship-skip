@@ -92,7 +92,13 @@ export default function Home() {
         <h1 className="mx-auto max-w-4xl text-5xl font-extrabold leading-[1.1] tracking-tighter text-zinc-50 sm:text-6xl lg:text-7xl">
           Win by shipping <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">less</span>.
           <br />
-          Not more, with <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">AI users</span>.
+          <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+            Not more.
+          </span>
+          <br />
+          <span className="text-4xl sm:text-5xl lg:text-6xl text-zinc-400 font-bold">
+            With <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">AI users</span>.
+          </span>
         </h1>
 
         <p className="mx-auto mt-8 max-w-xl text-lg leading-relaxed text-zinc-400">
