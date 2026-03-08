@@ -48,8 +48,8 @@ export default function Home() {
             </div>
             <span className="text-lg font-bold tracking-tight">ShipSkip</span>
           </div>
-          <Button variant="secondary" size="sm" asChild>
-            <Link href="/evaluate">Get Early Access</Link>
+          <Button variant="secondary" size="sm" render={<Link href="/evaluate" />}>
+            Get Early Access
           </Button>
         </div>
       </nav>
@@ -101,12 +101,10 @@ export default function Home() {
           <Button
             size="lg"
             className="h-12 gap-2 rounded-full bg-indigo-600 px-8 text-base font-medium text-white shadow-lg shadow-indigo-500/25 transition-all duration-300 hover:bg-indigo-500 hover:shadow-indigo-500/40 hover:ring-2 hover:ring-indigo-500/50 hover:ring-offset-2 hover:ring-offset-background"
-            asChild
+            render={<Link href="/evaluate" />}
           >
-            <Link href="/evaluate">
-              Get Early Access
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            Get Early Access
+            <ArrowRight className="h-4 w-4" />
           </Button>
           <Button
             variant="outline"
@@ -578,6 +576,7 @@ export default function Home() {
           <Button
             size="lg"
             className="mt-4 h-14 gap-2 rounded-full bg-indigo-600 px-10 text-lg font-medium text-white hover:bg-indigo-500"
+            render={<Link href="/evaluate" />}
           >
             Get Early Access
             <ArrowRight className="h-5 w-5" />
