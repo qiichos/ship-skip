@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FaRocketchat } from "react-icons/fa";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -49,7 +50,7 @@ export default function Home() {
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
           <div className="flex items-center gap-2">
             <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-600">
-              <Sparkles className="h-4 w-4 text-white" />
+              <FaRocketchat className="h-4 w-4 text-white" />
             </div>
             <span className="text-lg font-bold tracking-tight">ShipSkip</span>
           </div>
@@ -71,7 +72,7 @@ export default function Home() {
           </div>
           <div className="h-px w-8 bg-zinc-700" />
           <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-indigo-500/40 bg-indigo-950/40">
-            <Sparkles className="h-6 w-6 text-indigo-400" />
+            <FaRocketchat className="h-6 w-6 text-indigo-400" />
           </div>
           <div className="h-px w-8 bg-zinc-700" />
           <div className="flex flex-col gap-1.5">
@@ -651,7 +652,7 @@ export default function Home() {
         <div className="mx-auto max-w-3xl text-center">
           <div className="mb-8 flex justify-center">
             <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-indigo-500/30 bg-indigo-950/30">
-              <Sparkles className="h-8 w-8 text-indigo-400" />
+              <FaRocketchat className="h-8 w-8 text-indigo-400" />
             </div>
           </div>
           <h2 className="mb-6 text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl lg:text-5xl">
@@ -676,7 +677,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-6xl items-center justify-between text-sm text-zinc-600">
           <div className="flex items-center gap-2">
             <div className="flex h-5 w-5 items-center justify-center rounded bg-indigo-600">
-              <Sparkles className="h-3 w-3 text-white" />
+              <FaRocketchat className="h-3 w-3 text-white" />
             </div>
             <span>&copy; 2026 ShipSkip</span>
           </div>

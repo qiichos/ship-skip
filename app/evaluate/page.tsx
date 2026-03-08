@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { FaRocketchat } from "react-icons/fa";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -222,7 +223,7 @@ export default function EvaluatePage() {
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-2">
               <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-600">
-                <Sparkles className="h-4 w-4 text-white" />
+                <FaRocketchat className="h-4 w-4 text-white" />
               </div>
               <span className="text-lg font-bold tracking-tight">ShipSkip</span>
             </Link>
