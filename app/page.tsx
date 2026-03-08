@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,7 +18,6 @@ import {
   RotateCcw,
   Shield,
   Sparkles,
-  SquareArrowOutUpRight,
   Timer,
   TrendingDown,
   Users,
@@ -36,23 +36,6 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* Reusable icon circle */
-function IconCircle({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <div
-      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900 ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
-
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -65,15 +48,16 @@ export default function Home() {
             </div>
             <span className="text-lg font-bold tracking-tight">ShipSkip</span>
           </div>
-          <Button variant="secondary" size="sm">
-            Get Early Access
+          <Button variant="secondary" size="sm" asChild>
+            <Link href="/evaluate">Get Early Access</Link>
           </Button>
         </div>
       </nav>
 
       {/* Hero */}
       <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-16 text-center">
-        <div className="pointer-events-none absolute top-1/4 -z-10 h-[500px] w-[800px] rounded-full bg-indigo-500/5 blur-[120px]" />
+        <div className="pointer-events-none absolute top-1/4 -z-10 h-[500px] w-[800px] rounded-full bg-indigo-500/15 blur-[120px]" />
+        <div className="pointer-events-none absolute left-1/4 top-1/2 -z-10 h-[400px] w-[600px] -translate-y-1/2 rounded-full bg-violet-500/10 blur-[120px]" />
 
         {/* Hero visual: animated-like flow diagram */}
         <div className="mb-10 flex items-center gap-3">
@@ -100,10 +84,10 @@ export default function Home() {
 
         <SectionLabel>Feature QA for the AI Era</SectionLabel>
 
-        <h1 className="mx-auto max-w-4xl text-4xl font-bold leading-[1.1] tracking-tight text-zinc-50 sm:text-5xl lg:text-7xl">
+        <h1 className="mx-auto max-w-4xl text-5xl font-extrabold leading-[1.1] tracking-tighter text-zinc-50 sm:text-6xl lg:text-7xl">
           Win by shipping less.
           <br />
-          <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
             Not more.
           </span>
         </h1>
@@ -116,15 +100,18 @@ export default function Home() {
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
           <Button
             size="lg"
-            className="h-12 gap-2 rounded-full bg-indigo-600 px-8 text-base font-medium text-white hover:bg-indigo-500"
+            className="h-12 gap-2 rounded-full bg-indigo-600 px-8 text-base font-medium text-white shadow-lg shadow-indigo-500/25 transition-all duration-300 hover:bg-indigo-500 hover:shadow-indigo-500/40 hover:ring-2 hover:ring-indigo-500/50 hover:ring-offset-2 hover:ring-offset-background"
+            asChild
           >
-            Get Early Access
-            <ArrowRight className="h-4 w-4" />
+            <Link href="/evaluate">
+              Get Early Access
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </Button>
           <Button
             variant="outline"
             size="lg"
-            className="h-12 rounded-full border-zinc-700 px-8 text-base font-medium text-zinc-300 hover:bg-zinc-800"
+            className="h-12 rounded-full border-zinc-700 bg-zinc-900/50 px-8 text-base font-medium text-zinc-300 backdrop-blur-sm transition-all duration-300 hover:bg-zinc-800 hover:text-white"
           >
             See How It Works
           </Button>
@@ -196,6 +183,7 @@ export default function Home() {
                 desc: "More screens, more noise",
                 color: "text-red-400",
                 border: "border-red-500/20",
+                shadow: "hover:shadow-red-500/10",
               },
               {
                 icon: Brain,
@@ -203,6 +191,7 @@ export default function Home() {
                 desc: "Forces users to think harder",
                 color: "text-orange-400",
                 border: "border-orange-500/20",
+                shadow: "hover:shadow-orange-500/10",
               },
               {
                 icon: Eye,
@@ -210,13 +199,14 @@ export default function Home() {
                 desc: "Blurs what makes you great",
                 color: "text-amber-400",
                 border: "border-amber-500/20",
+                shadow: "hover:shadow-amber-500/10",
               },
             ].map((item) => (
               <div
                 key={item.label}
-                className={`flex flex-col items-center gap-3 rounded-xl border ${item.border} bg-zinc-900/50 p-6`}
+                className={`group flex flex-col items-center gap-3 rounded-2xl border ${item.border} bg-zinc-900/40 p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-zinc-900/60 hover:shadow-xl ${item.shadow}`}
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-800/80">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-800/80 transition-transform duration-300 group-hover:scale-110">
                   <item.icon className={`h-6 w-6 ${item.color}`} />
                 </div>
                 <p className={`text-sm font-semibold ${item.color}`}>
@@ -242,37 +232,40 @@ export default function Home() {
           </h2>
 
           <div className="mx-auto grid max-w-3xl gap-6 md:grid-cols-2">
-            <Card className="border-zinc-800 bg-zinc-900/50">
+            <Card className="group relative overflow-hidden border-white/5 bg-zinc-900/40 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-zinc-700/50 hover:shadow-xl hover:shadow-black/50">
+              <div className="pointer-events-none absolute -inset-px rounded-xl border border-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <CardContent className="p-6">
                 <div className="mb-4 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800">
-                    <Shield className="h-5 w-5 text-zinc-500" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-800/80 transition-transform duration-300 group-hover:scale-110">
+                    <Shield className="h-5 w-5 text-zinc-500 group-hover:text-zinc-400" />
                   </div>
-                  <h3 className="text-sm font-semibold tracking-wider text-zinc-500 uppercase">
+                  <h3 className="text-sm font-semibold tracking-wider text-zinc-500 uppercase transition-colors duration-300 group-hover:text-zinc-400">
                     Traditional QA
                   </h3>
                 </div>
                 <ul className="space-y-2 text-left text-sm text-zinc-500">
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-zinc-700" />
+                    <CheckCircle2 className="h-4 w-4 text-zinc-700 transition-colors duration-300 group-hover:text-zinc-500" />
                     Find bugs
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-zinc-700" />
+                    <CheckCircle2 className="h-4 w-4 text-zinc-700 transition-colors duration-300 group-hover:text-zinc-500" />
                     Match the spec
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-zinc-700" />
+                    <CheckCircle2 className="h-4 w-4 text-zinc-700 transition-colors duration-300 group-hover:text-zinc-500" />
                     Don&apos;t break things
                   </li>
                 </ul>
               </CardContent>
             </Card>
 
-            <Card className="border-indigo-500/30 bg-indigo-950/20">
+            <Card className="group relative overflow-hidden border-indigo-500/20 bg-indigo-950/20 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500/40 hover:shadow-2xl hover:shadow-indigo-500/10">
+              <div className="pointer-events-none absolute -inset-px rounded-xl border border-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-indigo-500/[0.05] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <CardContent className="p-6">
                 <div className="mb-4 flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-900/50">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-900/50 transition-transform duration-300 group-hover:scale-110 group-hover:bg-indigo-900/70">
                     <Sparkles className="h-5 w-5 text-indigo-400" />
                   </div>
                   <h3 className="text-sm font-semibold tracking-wider text-indigo-400 uppercase">
@@ -281,15 +274,15 @@ export default function Home() {
                 </div>
                 <ul className="space-y-2 text-left text-sm text-zinc-300">
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-indigo-400" />
+                    <CheckCircle2 className="h-4 w-4 text-indigo-400 transition-transform duration-300 group-hover:scale-110" />
                     Do users need this?
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-indigo-400" />
+                    <CheckCircle2 className="h-4 w-4 text-indigo-400 transition-transform duration-300 group-hover:scale-110" />
                     Does it feel right?
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-indigo-400" />
+                    <CheckCircle2 className="h-4 w-4 text-indigo-400 transition-transform duration-300 group-hover:scale-110" />
                     Is the product better with it?
                   </li>
                 </ul>
@@ -336,16 +329,24 @@ export default function Home() {
                 border: "border-fuchsia-500/20",
               },
             ].map((item) => (
-              <div key={item.step} className="flex flex-col items-center gap-4">
-                <span className="text-[10px] font-bold tracking-widest text-zinc-600 uppercase">
+              <div
+                key={item.step}
+                className="group flex flex-col items-center gap-4 transition-all duration-300 hover:-translate-y-1"
+              >
+                <span className="text-[10px] font-bold tracking-widest text-zinc-600 uppercase transition-colors duration-300 group-hover:text-zinc-400">
                   Step {item.step}
                 </span>
                 <div
-                  className={`flex h-16 w-16 items-center justify-center rounded-2xl border ${item.border} bg-zinc-900`}
+                  className={`relative flex h-16 w-16 items-center justify-center rounded-2xl border ${item.border} bg-zinc-900/80 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110 group-hover:shadow-lg`}
                 >
+                  <div
+                    className={`absolute inset-0 -z-10 rounded-2xl bg-current opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-20 ${item.color}`}
+                  />
                   <item.icon className={`h-7 w-7 ${item.color}`} />
                 </div>
-                <p className={`text-base font-semibold ${item.color}`}>
+                <p
+                  className={`text-base font-semibold transition-transform duration-300 group-hover:scale-105 ${item.color}`}
+                >
                   {item.title}
                 </p>
                 <p className="text-sm leading-relaxed text-zinc-500">
@@ -372,12 +373,13 @@ export default function Home() {
             A score. A verdict. Real voices.
           </h2>
 
-          <Card className="mx-auto max-w-md border-zinc-800 bg-zinc-900/70">
+          <Card className="group mx-auto max-w-md overflow-hidden border-white/5 bg-zinc-900/50 backdrop-blur-xl transition-all duration-300 hover:border-zinc-700/50 hover:shadow-2xl hover:shadow-black/50">
             <CardContent className="p-6 text-left">
               {/* Score header */}
               <div className="mb-5 flex items-center gap-4">
                 <div className="relative flex h-16 w-16 items-center justify-center">
-                  <svg className="h-16 w-16 -rotate-90" viewBox="0 0 64 64">
+                  <svg className="h-16 w-16 -rotate-90" viewBox="0 0 64 64" role="img" aria-label="Score: 78">
+                    <title>Feature Score</title>
                     <circle
                       cx="32"
                       cy="32"
@@ -473,14 +475,20 @@ export default function Home() {
                 bg: "bg-red-950/10",
               },
             ].map((item) => (
-              <Card key={item.label} className={`${item.border} ${item.bg}`}>
+              <Card
+                key={item.label}
+                className={`group relative overflow-hidden backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${item.border} ${item.bg}`}
+              >
+                <div className="pointer-events-none absolute -inset-px rounded-xl border border-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <CardContent className="flex flex-col items-center gap-3 p-6">
                   <div
-                    className={`flex h-12 w-12 items-center justify-center rounded-xl ${item.iconBg}`}
+                    className={`flex h-12 w-12 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 ${item.iconBg}`}
                   >
                     <item.icon className={`h-6 w-6 ${item.color}`} />
                   </div>
-                  <p className={`text-xl font-bold ${item.color}`}>
+                  <p
+                    className={`text-xl font-bold transition-transform duration-300 group-hover:scale-105 ${item.color}`}
+                  >
                     {item.label}
                   </p>
                   <p className="text-sm text-zinc-500">{item.desc}</p>
@@ -530,15 +538,18 @@ export default function Home() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="flex gap-4 rounded-xl border border-zinc-800 bg-zinc-900/30 p-5 text-left"
+                className="group relative flex gap-4 overflow-hidden rounded-2xl border border-white/5 bg-zinc-900/40 p-5 text-left backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-zinc-900/60 hover:shadow-lg hover:shadow-black/50 hover:border-white/10"
               >
+                <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${item.bg}`}
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-110 ${item.bg}`}
                 >
                   <item.icon className={`h-5 w-5 ${item.color}`} />
                 </div>
                 <div>
-                  <p className="font-medium text-zinc-200">{item.title}</p>
+                  <p className="font-medium text-zinc-200 transition-colors duration-300 group-hover:text-white">
+                    {item.title}
+                  </p>
                   <p className="text-sm text-zinc-500">{item.desc}</p>
                 </div>
               </div>
